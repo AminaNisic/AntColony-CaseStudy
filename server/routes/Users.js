@@ -25,7 +25,7 @@ router.post('/login', async (req,res) => {
 
     bcrypt.compare(password, user.password).then((match) => {
         if (!match) res.json({ error: "Wrong username and password combination" });
-
+        //add username or email option
         res.json("You successfully logged in!");
     })
 })
