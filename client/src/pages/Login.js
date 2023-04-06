@@ -5,11 +5,11 @@ import axios from "axios";
 
 function Login() {
 
-    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const login = () => {
-        const data = { username: username, password: password };
+        const data = { email: email, password: password };
         console.log(data);
         axios
           .post("http://localhost:3001/auth/login", data)
@@ -24,7 +24,7 @@ function Login() {
   return (
     <div>
         <input type="text" onChange={(event) => {
-            setUsername(event.target.value);
+            setEmail(event.target.value);
         }}/>
         <input type="password" onChange={(event) => {
             setPassword(event.target.value);
