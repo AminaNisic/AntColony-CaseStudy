@@ -9,11 +9,17 @@ function Login() {
     const [password, setPassword] = useState("");
 
     const login = () => {
-        const data = { username: username, password: password}
-        axios.post("http://localhost:3001/auth/login", data).then((response) => {
+        const data = { username: username, password: password };
+        console.log(data);
+        axios
+          .post("http://localhost:3001/auth/login", data)
+          .then((response) => {
             console.log(response.data);
-        })
-    }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      };
 
   return (
     <div>

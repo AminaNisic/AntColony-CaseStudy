@@ -11,12 +11,12 @@ router.post("/", async (req,res) => {
         password: hash,
         email: email,
     })
-    res.json("Successfully registered");
+    return res.json("Successfully registered");
    })
 });
 
 router.post('/login', async (req,res) => {
-    const { username, password, email} = req.body;
+    const {password, email} = req.body;
 
     const user = await Users.findOne({ where : {email:email}
     });
@@ -26,7 +26,7 @@ router.post('/login', async (req,res) => {
     bcrypt.compare(password, user.password).then((match) => {
         if (!match) res.json({ error: "Wrong username and password combination" });
         //add username or email option
-        res.json("You successfully logged in!");
+         return res.json("You successfully logged in!");
     })
 })
 
