@@ -32,11 +32,10 @@ function Login() {
         <button type="button" onClick={login}>
           LOGIN
         </button>
-      </form>
     </div>
   );
-}3
-3
+}
+
 
 
 export default Login;
