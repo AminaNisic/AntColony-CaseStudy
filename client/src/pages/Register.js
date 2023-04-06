@@ -31,7 +31,7 @@ const onSubmit = (data) => {
           <Field id="inputDetails" name="username" placeholder="Pick a username"/>
           <label>Email: </label>
           <ErrorMessage name="email" component="span"/>
-          <Field id="inputDetails" name="email" placeholder="Your email"/>
+          <Field type="password" id="inputDetails" name="email" placeholder="Your email"/>
           <label>Password: </label>
           <ErrorMessage name="password" component="span"/>
           <Field id="inputDetails" name="password" placeholder="Choose your password"/>

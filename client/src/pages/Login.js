@@ -1,33 +1,30 @@
-import React from 'react'
-import {Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from "yup";
+import React, { useState } from 'react'
 import axios from "axios";
 
+//To stop the backend/server from crashing, you must add a return statement before all res.json() calls. After googling, I learned that you are only supposed to call res.json() once per post request, but since this is an asynchronous function, it can call it more than once regardless of the if-else statements.
+
 function Login() {
-const initialValues = {
-    email: "",
-    password: ""
-}
 
-const validationSchema = Yup.object().shape({
-    email: Yup.string().required(),
-    password: Yup.string().min(8).required()
-  })
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
 
+    const login = () => {
+        const data = { username: username, password: password}
+        axios.post("http://localhost:3001/auth/login", data).then((response) => {
+            console.log(response.data);
+        })
+    }
 
   return (
     <div>
-      <Formik initialValues={initialValues} validationSchema={validationSchema}>
-        <Form>
-          <label>Email: </label>
-          <ErrorMessage name="email" component="span"/>
-          <Field id="inputDetails" name="email" placeholder="Your email"/>
-          <label>Password: </label>
-          <ErrorMessage name="password" component="span"/>
-          <Field id="inputDetails" name="password" placeholder="Choose your password"/>
-          <button type="submit">Register</button>
-        </Form>
-      </Formik>
+        <input type="text" onChange={(event) => {
+            setUsername(event.target.value);
+        }}/>
+        <input type="password" onChange={(event) => {
+            setPassword(event.target.value);
+        }}/>
+
+        <button onClick={login}>Log in</button>
     </div>
   )
 }
