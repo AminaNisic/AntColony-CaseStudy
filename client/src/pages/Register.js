@@ -33,10 +33,10 @@ function Register() {
           <Field id="inputDetails" name="username" placeholder="Pick a username"/>
           <label>Email: </label>
           <ErrorMessage name="email" component="span"/>
-          <Field type="password" id="inputDetails" name="email" placeholder="Your email"/>
+          <Field id="inputDetails" name="email" placeholder="Your email"/>
           <label>Password: </label>
           <ErrorMessage name="password" component="span"/>
-          <Field id="inputDetails" name="password" placeholder="Choose your password"/>
+          <Field type="password"id="inputDetails" name="password" placeholder="Choose your password"/>
           <button type="submit">REGISTER</button>
         </Form>
       </Formik>

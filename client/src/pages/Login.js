@@ -4,38 +4,44 @@ import '../App.css';
 
 function Login() {
 
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-    const login = () => {
-        const data = { username: username, password: password };
-        console.log(data);
-        axios
-          .post("http://localhost:3001/auth/login", data)
-          .then((response) => {
-            console.log(response.data);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      };
+  const login = () => {
+    const data = { email: email, password: password };
+    axios.post('http://localhost:3001/auth/login', data).then((response) => {
+      console.log(response.data);
+    });
+  };
 
   return (
-    <div>
-        <input type="text" onChange={(event) => {
-            setUsername(event.target.value);
-        }}/>
-        <input type="password" onChange={(event) => {
+    <div className="login-container">
+      <h1>Please login</h1>
+      <form className="login-form">
+        <label>Email: </label>
+        <input
+          type="text"
+          id="email-input"
+          value={email}
+          onChange={(event) => {
+            setEmail(event.target.value);
+          }}
+        />
+        <label>Password:</label>
+        <input
+          type="password"
+          id="password-input"
+          value={password}
+          onChange={(event) => {
             setPassword(event.target.value);
           }}
         />
         <button type="button" onClick={login}>
           LOGIN
         </button>
+      </form>
     </div>
   );
 }
-
-
 
 export default Login;
