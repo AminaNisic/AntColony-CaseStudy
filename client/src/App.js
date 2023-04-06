@@ -1,26 +1,23 @@
-import React, { useState } from 'react';
 import './App.css';
-import Navbar from './components/Navbar';
-import Home from './components/HomePage';
-import LoginModal from './components/LoginModal';
-import RegisterModal from './components/RegisterModal';
- /* ovdje closeat register popup */
+import React from 'react'
+import { BrowserRouter, Route, Switch, Link } from "react-router-dom"
+import Home from './pages/Home';
+import Register from './pages/Register';
+import Login from "./pages/Login"
+
 function App() {
-  const [showModal, setShowModal] = useState(false);
-
-  const handleShowModal = () => {
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
-
   return (
     <div className="App">
-      <Navbar handleShowModal={handleShowModal} />
-      <Home />
-      {showModal && <LoginModal handleCloseModal={handleCloseModal} />}
+      <BrowserRouter>
+        <Link to="/register"> Register </Link>
+        <Link to="/login"> Login </Link>
+        <Link to="/"> Home </Link>
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/register" exact component={Register} />
+          <Route path="/login" exact component={Login} />
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
