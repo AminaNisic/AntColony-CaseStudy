@@ -7,9 +7,14 @@ function Home() {
     const[ listOfPipelines, setListOfPipelines] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:3001/dashboard").then((response) => {
+        axios.get("http://localhost:3001/dashboard", {
+          headers: {
+            accessToken: sessionStorage.getItem("accessToken")
+          }
+        }).then((response) => {
           setListOfPipelines(response.data);
-        })
+        },
+        )
       }, [])
 
   return (
