@@ -1,8 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import '../App.css';
+import { Link } from 'react-router-dom';
 
 function Navbar() {
+  const history = useHistory();
+
+  const handleLoginClick = () => {
+    history.push('/login');
+  };
+
   return (
     <nav className="navbar">
       <ul className="navbar-nav">
@@ -11,15 +18,13 @@ function Navbar() {
             Home
           </Link>
         </li>
-        <li className="nav-item">
-          <Link to="/register" className="nav-link">
-            Register
-          </Link>
+        <li className="nav-item search-form">
+          <input type="text" placeholder="Search" />
         </li>
         <li className="nav-item">
-          <Link to="/login" className="nav-link">
-            Login
-          </Link>
+          <button className="nav-link" onClick={handleLoginClick}>
+            LOGIN
+          </button>
         </li>
       </ul>
     </nav>

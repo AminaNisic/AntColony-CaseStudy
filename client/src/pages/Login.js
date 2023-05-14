@@ -15,7 +15,6 @@ function Login() {
       } else { 
         sessionStorage.setItem("accessToken", response.data);
       }
-      
     });
   };
 
@@ -45,6 +44,7 @@ function Login() {
           LOGIN
         </button>
       </form>
+      <p>Don't have an account? <a href="/register">Register now.</a></p>
     </div>
   );
 }
