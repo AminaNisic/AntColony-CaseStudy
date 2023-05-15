@@ -260,6 +260,8 @@ ul {
   .main-content {
     flex: 1;
     padding: 20px;
+    padding-top:30px;
+    text-align:center
   }
   
   .sidebar-btn {
@@ -429,4 +431,48 @@ button:hover {
   background-color: #D3D3D3;
   width: calc(100% - 20px); 
   text-align: center; 
+}
+.console-container {
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+.run-script-btn {
+  margin-top: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #A95C68;
+  color: black;
+  font-size: 16px;
+  cursor: pointer;
+}
+.run-script-btn:hover {
+  background-color: #a95c68;
+  color: white;
+  outline: none;
+  cursor: pointer;
+}
+.add-pipeline-btn {
+
+  right: 500px; /* Adjust this value to position the button more to the right */
+  float: right;
+  background-color: pink;
+  color: black;
+}
+.add-pipeline-btn:hover {
+  background-color: #a95c68;
+  color: white;
+  outline: none;
+  cursor: pointer;
+}
+.delete-pipeline-btn {
+  float:right;
+  background-color: pink;
+  color: black;
+}
+.delete-pipeline-btn:hover {
+  background-color: #a95c68;
+  color: white;
+  outline: none;
+  cursor: pointer;
 }
