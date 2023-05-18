@@ -9,10 +9,6 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         },
-        lastBuild: {
-            type: DataTypes.DATE,
-            allowNull: false
-        } ,
         actions: {
             type: DataTypes.STRING(5000),
             allowNull: false
