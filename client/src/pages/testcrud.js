@@ -20,11 +20,21 @@ function testcrud(){
         repoURL: Yup.string().required(),
         status: Yup.string().required()
       });
-
+ 
       const onSubmit = (data) => {
-        axios.post('http://localhost:3001/projects/createProject', data).then((response) => {
+        axios.post('http://localhost:3001/projects/createProject', data, {
+            headers: {
+                accessToken: sessionStorage.getItem("accessToken"),
+            }
+        })
+        .then((response) => {
+          if (response.data.error) {
+            alert(response.data.error);
+          } else {
           alert("Successfully created!");
-        });
+          }
+        },
+        );
       };
 
     //frontend

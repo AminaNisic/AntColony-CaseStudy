@@ -38,6 +38,12 @@ function Navbar() {
           </Link>
         </li>
 
+        <li className="nav-item">
+          <Link to="/projectslist" className="nav-link">
+            projects list
+          </Link>
+        </li>
+
         
       </ul>
     </nav>
