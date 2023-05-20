@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../App.css';
+import { useHistory } from 'react-router-dom';
 
 function Login() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  let history = useHistory();
 
   const login = () => {
     const data = { email: email, password: password };
@@ -14,6 +17,7 @@ function Login() {
         alert(response.data.error);
       } else { 
         sessionStorage.setItem("accessToken", response.data);
+        history.push("/");
       }
     });
   };

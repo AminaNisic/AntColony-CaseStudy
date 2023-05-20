@@ -14,7 +14,16 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         }    
-    })
+    });
+
+    Users.associate = (models) => {
+        Users.hasMany(models.Projects, {
+            onDelete: "cascade",
+        });
+        Users.hasMany(models.Pipelines, {
+            onDelete: "cascade",
+        }); 
+    };
 
     return Users;
 }

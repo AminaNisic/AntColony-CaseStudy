@@ -15,8 +15,8 @@ function Home() {
     setIsStatusOpen(!isStatusOpen);
   };
 
-
-  useEffect(() => {
+//for middleware, an example
+  /*useEffect(() => {
     axios
       .get('http://localhost:3001/dashboard', {
         headers: {
@@ -24,9 +24,13 @@ function Home() {
         },
       })
       .then((response) => {
+        if(response.data.error){
+          alert("You are not logged in! Log in to proceed with this");
+        } else {
         setListOfPipelines(response.data);
+        }
       });
-  }, []);
+  }, []);*/
 
   return (
     <div className="home-container">

@@ -10,6 +10,10 @@ function Navbar() {
     history.push('/login');
   };
 
+  const handlePipelineClick = () => {
+    history.push('/testcrud.js');
+  }
+
   return (
     <nav className="navbar">
       <ul className="navbar-nav">
@@ -26,6 +30,15 @@ function Navbar() {
             LOGIN
           </button>
         </li>
+
+        
+        <li className="nav-item">
+          <Link to="/testcrud" className="nav-link">
+            newpajplajn
+          </Link>
+        </li>
+
+        
       </ul>
     </nav>
   );

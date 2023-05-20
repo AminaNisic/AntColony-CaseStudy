@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Navbar from './pages/Navbar';
+import testcrud from './pages/testcrud';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -15,6 +16,7 @@ ReactDOM.render(
         <Route path="/" exact component={Home} />
         <Route path="/register" exact component={Register} />
         <Route path="/login" exact component={Login} />
+        <Route path="/testcrud" exact component={testcrud} />
       </Switch>
     </BrowserRouter>
   </React.StrictMode>,
