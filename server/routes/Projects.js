@@ -25,5 +25,13 @@ router.get("/myProjects", validateToken, async (req, res) => {
   const Project = await Projects.findOne({ where: { UserId: id }});
   res.json(Project); 
 }); 
+
+//get my project by id
+router.get("/myProjects/:projectid", validateToken, async (req, res) => {
+  const userid=req.user.id
+  const projectid = req.params.projectid
+  const Project = await Projects.findOne({ where: { UserId: userid, id:projectid}});
+  res.json(Project);
+});
   
   module.exports = router;
