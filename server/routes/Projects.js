@@ -20,10 +20,10 @@ router.get("/", async (req, res) => {
 
 //
 //findOne({ where: { title: 'My Title' } })
-router.get("/ById/:id", async (req, res) => {
-  const id=req.params.id;
+router.get("/myProjects", validateToken, async (req, res) => {
+  const id=req.user.id;
   const Project = await Projects.findOne({ where: { UserId: id }});
-  res.json(Project);
+  res.json(Project); 
 }); 
   
   module.exports = router;
