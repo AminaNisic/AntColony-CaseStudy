@@ -70,6 +70,27 @@ router.post("/createPipeline", validateToken, async (req, res) => {
   res.json(pipeline);
 });
 
+//edit routes
+router.put("/editName", validateToken, async (req, res) => {
+  const { newpipelineName, id } = req.body;//pipelinename passed here is the new pipeline name, maybe i change so it's not confusion later? 
+  await Pipelines.update({ pipelineName:newpipelineName }, {where: { id:id } });
+  res.json(newpipelineName);
+});
+
+router.put("/editActions", validateToken, async (req, res) => {
+  const { newactions, id } = req.body;
+  await Pipelines.update({ actions:newactions }, {where: { id:id } });
+  res.json(newactions);
+});
+
+router.put("/runpipeline", validateToken, async (req, res) => {
+  const { successstatus, id } = req.body;
+  await Pipelines.update({ stateOfPipeline:successstatus }, {where: { id:id } });
+  res.json(successstatus);
+});
+
+
+//delete
 router.delete("/:pipelineid", validateToken, async (req, res) => {
   const pipelineid = req.params.pipelineid
 
