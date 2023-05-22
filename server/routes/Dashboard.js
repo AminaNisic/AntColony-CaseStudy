@@ -70,4 +70,16 @@ router.post("/createPipeline", validateToken, async (req, res) => {
   res.json(pipeline);
 });
 
+router.delete("/:pipelineid", validateToken, async (req, res) => {
+  const pipelineid = req.params.pipelineid
+
+  await Pipelines.destroy({
+    where: {
+      id: pipelineid
+    },
+  });
+
+  res.json("Deleted successfully");
+});
+
 module.exports = router;

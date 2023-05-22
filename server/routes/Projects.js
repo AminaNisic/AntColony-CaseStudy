@@ -33,5 +33,17 @@ router.get("/myProjects/:projectid", validateToken, async (req, res) => {
   const Project = await Projects.findOne({ where: { UserId: userid, id:projectid}});
   res.json(Project);
 });
+
+router.delete("/:projectid", validateToken, async (req, res) => {
+  const projectid = req.params.projectid
+
+  await Projects.destroy({
+    where: {
+      id: projectid
+    },
+  });
+
+  res.json("Deleted successfully");
+});
   
   module.exports = router;
