@@ -30,21 +30,6 @@ function Navbar() {
             LOGIN
           </button>
         </li>
-
-        
-        <li className="nav-item">
-          <Link to="/testcrud" className="nav-link">
-            newpajplajn
-          </Link>
-        </li>
-
-        <li className="nav-item">
-          <Link to="/projectslist" className="nav-link">
-            projects list
-          </Link>
-        </li>
-
-        
       </ul>
     </nav>
   );
