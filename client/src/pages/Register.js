@@ -38,6 +38,7 @@ function Register() {
           <Field type="password" id="password" name="password" />
           <ErrorMessage name="password" component="span" />
           <button type="submit">REGISTER</button>
+          <p>Already have an account? <a href="/login">Login</a></p>
         </Form>
       </Formik>
     </div>
