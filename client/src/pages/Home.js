@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../App.css';
+import Options from './Options';
+import { Link } from 'react-router-dom';
 
 function Home() {
-  const [listOfPipelines, setListOfPipelines] = useState([]);
   const [isQueueOpen, setIsQueueOpen] = useState(false);
   const [isStatusOpen, setIsStatusOpen] = useState(false);
+  const [showOptions, setShowOptions] = useState(false);
+  const [optionsPosition, setOptionsPosition] = useState({ x: 0, y: 0 });
+  const [selectedPipe, setSelectedPipe] = useState('');
 
   const toggleQueue = () => {
     setIsQueueOpen(!isQueueOpen);
@@ -13,24 +17,48 @@ function Home() {
 
   const toggleStatus = () => {
     setIsStatusOpen(!isStatusOpen);
+  } ;
+  
+
+  const handleClick = (event) => {
+    if (
+      !event.target.classList.contains('options-menu') &&
+      !event.target.classList.contains('pipe-name')
+    ) {
+      setShowOptions(false);
+    }
+  };
+  
+  const showContextMenu = (event, pipeName) => {
+    event.preventDefault();
+    const { clientX, clientY } = event;
+    setSelectedPipe(pipeName);
+    setOptionsPosition({ x: clientX, y: clientY });
+    setShowOptions(true);
+  };
+  
+  const handleEdit = () => {
+    console.log(`Edit ${selectedPipe}`);
+    setShowOptions(false);
   };
 
-//for middleware, an example
-  /*useEffect(() => {
-    axios
-      .get('http://localhost:3001/dashboard', {
-        headers: {
-          accessToken: sessionStorage.getItem('accessToken'),
-        },
-      })
-      .then((response) => {
-        if(response.data.error){
-          alert("You are not logged in! Log in to proceed with this");
-        } else {
-        setListOfPipelines(response.data);
-        }
-      });
-  }, []);*/
+  const handleDelete = () => {
+    console.log(`Delete ${selectedPipe}`);
+    setShowOptions(false);
+  };
+
+  const handleRun = () => {
+    console.log(`Run ${selectedPipe}`);
+    setShowOptions(false);
+  };
+
+  useEffect(() => {
+    document.addEventListener('click', handleClick);
+
+    return () => {
+    document.removeEventListener('click', handleClick);
+  };
+}, []);
 
   return (
     <div className="home-container">
@@ -65,66 +93,74 @@ function Home() {
             </div>
           )}
         </div>
-        <div className="console-container">
-          <div className="console-header">Script Console</div>
-          <div className="console-input">
-            <textarea rows="10" cols="50"></textarea>
-          </div>
-          <button className="run-script-btn">
-            Run Script
-          </button>
-        </div>
+        <div className = "project-table-container"></div>
+         <table class="project-table">
+              <thead>
+                <tr>
+                  <th>Project Name</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td> <Link to = "/projectslist">Project 1</Link></td>
+                </tr>
+                <tr>
+                <td> <Link to = "/projectslist">Project 2</Link></td>
+                </tr>
+              </tbody>
+            </table>
       </div>
       <div className="main-content">
+        <button className="add-button" title="Add pipeline">+</button>
         <table className="pipeline-table">
-        <caption>
-          <button className="add-pipeline-btn" title="Add pipeline">
-            +
-          <i className="plus-icon"></i>
-          </button>
-          <button className="delete-pipeline-btn" title="Delete pipeline">
-             -
-          <i className="minus-icon"></i>
-          </button>
-        </caption>
           <thead>
-          <tr>
-            <th>Name</th>
-            <th>Status</th>
-            <th>Last build</th>
-            <th>Actions</th>
-          </tr>
+            <tr>
+              <th>Name</th>
+              <th>Language</th>
+              <th>Action</th>
+              <th>State</th>
+            </tr>
           </thead>
-          <tr>
-          <td>Pipe 1</td>
-          <td>NE RADI</td>
-          <td>29.4.2014.</td>
-          <td>idk</td>
-          </tr>
-          <tr>
-          <td>Pipe 2</td>
-            <td>NE RADI</td>
-            <td>29.4.2014.</td>
-            <td>idk</td>
-          </tr>
-          <tr>
-            <td>Pipe 3</td>
-            <td>NE RADI</td>
-            <td>29.4.2014.</td>
-            <td>idk</td>
-          </tr>
-          <tr>
-            <td>Pipe 4</td>
-            <td>NE RADI</td>
-            <td>29.4.2014.</td>
-            <td>idk</td>
-          </tr>
+          <tbody>
+            <tr>
+              <td className="pipe-name" onClick={(event) => event.button === 0 && showContextMenu(event, 'Pipe 1')}>Pipe 1</td>
+              <td>React</td>
+              <td>Action</td>
+              <td>Running</td>
+            </tr>
+            <tr>
+              <td className="pipe-name" onClick={(event) => event.button === 0 && showContextMenu(event, 'Pipe 2')}>Pipe 2</td>
+              <td>C</td>
+              <td>Action</td>
+              <td>Not running</td>
+            </tr>
+            <tr>
+              <td className="pipe-name" onClick={(event) => event.button === 0 && showContextMenu(event, 'Pipe 3')}>Pipe 3</td>
+              <td>Python</td>
+              <td>Action</td>
+              <td>Not running</td>
+            </tr>
+            <tr>
+              <td className="pipe-name" onClick={(event) => event.button === 0 && showContextMenu(event, 'Pipe 4')}>Pipe 4</td>
+              <td>Python</td>
+              <td>Action</td>
+              <td>Not running</td>
+            </tr>
+          </tbody>
         </table>
-      <div class="plus-sign">
-  <span></span>
-</div>
-</div>
-</div>
-);
+        {showOptions && (
+          <Options
+            x={optionsPosition.x}
+            y={optionsPosition.y}
+            onClose={() => setShowOptions(false)}
+            onEdit={handleEdit}
+            onDelete={handleDelete}
+            onRun={handleRun}
+          />
+        )}
+      </div>
+    </div>
+  );
 }
+
 export default Home;
