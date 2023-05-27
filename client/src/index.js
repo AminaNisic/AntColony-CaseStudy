@@ -7,7 +7,7 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import Navbar from './pages/Navbar';
 import testcrud from './pages/testcrud';
-import projectslist from './pages/projectslist';
+import ProjectsList from './pages/ProjectsList';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -18,7 +18,7 @@ ReactDOM.render(
         <Route path="/register" exact component={Register} />
         <Route path="/login" exact component={Login} />
         <Route path="/testcrud" exact component={testcrud} />
-        <Route path="/projectslist" exact component={projectslist} />
+        <Route path="/projectslist" exact component={ProjectsList}/>
       </Switch>
     </BrowserRouter>
   </React.StrictMode>,
