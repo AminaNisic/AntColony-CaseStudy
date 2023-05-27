@@ -4,7 +4,6 @@ import '../App.css';
 import { useHistory } from 'react-router-dom';
 
 function Login() {
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -48,7 +47,7 @@ function Login() {
           LOGIN
         </button>
       </form>
-      <p>Don't have an account? <a href="/register">Register now.</a></p>
+      <p>Don't have an account? <a href="/register">Register now</a></p>
     </div>
   );
 }
