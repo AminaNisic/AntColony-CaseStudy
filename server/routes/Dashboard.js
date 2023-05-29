@@ -64,7 +64,7 @@ axios.post("/createPipeline", pipelineData)
 
 router.post("/createPipeline", validateToken, async (req, res) => {
   const userid = req.user.id;
-  pipeline.UserId = userid;
+  Pipelines.UserId = userid;
   const pipeline = req.body;
   await Pipelines.create(pipeline);
   res.json(pipeline);
