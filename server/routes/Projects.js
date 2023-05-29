@@ -22,7 +22,7 @@ router.get("/", async (req, res) => {
 //findOne({ where: { title: 'My Title' } })
 router.get("/myProjects", validateToken, async (req, res) => {
   const id=req.user.id;
-  const Project = await Projects.findOne({ where: { UserId: id }});
+  const Project = await Projects.findAll({ where: { UserId: id }});
   res.json(Project); 
 }); 
 

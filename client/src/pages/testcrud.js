@@ -1,66 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import '../App.css';
 import { useHistory } from 'react-router-dom';
 
-function testcrud(){
+function Testcrud() {
 
-    //setup form
+  const [listOfProjects, setListOfProjects] = useState([]);
 
-    const initialValuesPN = {
-        projectName: '',
-        repoURL: '',
-        status: '',
-      };
+  useEffect(() => {
+    axios.get("http://localhost:3001/projects/myProjects", {
+      headers: {
+          accessToken: localStorage.getItem("accessToken"),
+      }
+  }).then((response) =>{
+      setListOfProjects(response.data);
+    })
+  }, []);
 
-    const validationSchemaPN = Yup.object().shape({
-        projectName: Yup.string().required(),
-        repoURL: Yup.string().required(),
-        status: Yup.string().required()
-      });
- 
-      const onSubmit = (data) => {
-        axios.post('http://localhost:3001/projects/createProject', data, {
-            headers: {
-                accessToken: localStorage.getItem("accessToken"),
-            }
-        })
-        .then((response) => {
-          if (response.data.error) {
-            alert(response.data.error);
-          } else {
-          alert("Successfully created!");
-          }
-        },
-        );
-      };
 
-    //frontend
   return (
-    <div className="login-container">
-      <h1>this is a test</h1>
-
-      <h1> create projects form </h1>
-      <Formik initialValues={initialValuesPN} onSubmit={onSubmit} validationSchema={validationSchemaPN}>
-        <Form className="register-form">
-          <label> project name </label>
-          <Field id="projectName" name="projectName" placeholder="Type project name"/>
-
-          <label> Your github repo url </label>
-          <Field id="repourl" name="repoURL" placeholder="Type github url of repo"/>
-
-          <label> status </label>
-          <Field id="status" name="status" placeholder="(Ex. in progress...)"/>
-
-
-          <button type="submit">Create project</button>
-        </Form>
-      </Formik>
-      
+    <div className="projectcontainer">
+      {listOfProjects.map((value,key) => {
+        return <div className='projectcard'> 
+        <div className='title'> {value.projectName} </div>
+        <div className='title'> {value.repoURL} </div>
+        <div className='title'> {value.status} </div>
+        <div className='title'> {value.createdAt} </div>
+        <div className='title'> {value.updatedAt} </div>
+        <h1>Project id: {value.id} </h1>
+        .
+        </div>
+      })}
     </div>
   );
 
   }
-export default testcrud;
+export default Testcrud;
