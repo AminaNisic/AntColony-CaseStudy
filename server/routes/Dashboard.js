@@ -69,7 +69,7 @@ router.post("/createPipeline", validateToken, async (req, res) => {
   await Pipelines.create(pipeline);
   res.json(pipeline);
 });
-
+ 
 //edit routes
 router.put("/editName", validateToken, async (req, res) => {
   const { newpipelineName, id } = req.body;//pipelinename passed here is the new pipeline name, maybe i change so it's not confusion later? 

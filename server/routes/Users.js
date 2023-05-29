@@ -3,6 +3,7 @@ const router = express.Router();
 const { Users } = require('../models')
 const bcrypt = require('bcrypt');
 const {sign} = require('jsonwebtoken');
+const { validateToken } = require('../middleware/AuthMiddleware')
 
 router.post("/", async (req,res) => {
    const { username, password, email } = req.body
@@ -33,6 +34,10 @@ router.post('/login', async (req,res) => {
 
          res.json(accessToken);
     })
+}); 
+
+router.get('/authenticate', validateToken, (req, res) =>{
+    return res.json(req.user);
 })
 
 module.exports = router;

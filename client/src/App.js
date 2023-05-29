@@ -12,11 +12,31 @@ import About from './pages/About';
 import Features from './pages/Features';
 import CreatePipe from './pages/CreatePipe';
 import CreateProject from './pages/CreateProject';
+import { AuthContext } from './helpers/AuthContext';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function App() {
+  const [authState, setAuthState] = useState(false);
+  
+  useEffect(() => {
+    axios.get('http://localhost:3001/auth/authenticate', { headers: {
+      accessToken: localStorage.getItem("accessToken"),
+    },   
+  }).then((response) => {
+      if(response.data.error){
+        setAuthState(false);
+      } else {
+        setAuthState(true);
+      }
+    })
+  }, []);
+
+
   return (
     <div className="App">
       <BrowserRouter>
+      <AuthContext.Provider value={{ authState, setAuthState }}>
         <Navbar />
         <Switch>
           <Route path="/createpipe" exact component={CreatePipe}/>
@@ -24,12 +44,18 @@ function App() {
           <Route path="/features" exact component={Features}/>
           <Route path="/about" exact component={About} />
           <Route path="/home" exact component={Home} />
-          <Route path="/register" exact component={Register} />
-          <Route path="/login" exact component={Login} />
           <Route path="/testcrud" exact component={testcrud} />
-          <Route path="/projectslist" exact component={ProjectsList} />
+          <Route path="/projectslist" exact component={ProjectsList} />   
+          {!authState && (
+          <>
+          <Route path="/register" exact component={Register} />
+          <Route path="/login" exact component={Login} />   
+          </>
+            )}
+  
           <Route component={LandingPage} />
         </Switch>
+        </AuthContext.Provider>
       </BrowserRouter>
     </div>
   );
