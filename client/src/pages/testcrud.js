@@ -37,7 +37,19 @@ function Testcrud() {
     <div className="projectcontainer">
       {listOfProjects.map((value,key) => {
         return <div className='projectcard'> 
-        <div className='title'> {value.projectName} </div>
+        <div className='title' onClick={() => {
+          //da li je ovdje auth state potreban???
+          let newname = prompt("enter new project name");
+          axios.put(
+            `http://localhost:3001/projects/editname/${value.id}`, 
+            {
+            newname:newname,
+        }, 
+        {
+          headers: {accessToken: localStorage.getItem("accessToken")},
+      });
+          }
+        }> {value.projectName} </div>
         <div className='title'> {value.repoURL} </div>
         <div className='title'> {value.status} </div>
         <div className='title'> {value.createdAt} </div>

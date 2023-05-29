@@ -36,14 +36,22 @@ router.get("/myProjects/:projectid", validateToken, async (req, res) => {
 
 //edits
 router.put("/editrepourl", validateToken, async (req, res) => {
-  const { newurl, id } = req.body;
+  const id=req.params.id
+  const newurl= req.body;
   await Projects.update({ repoURL:newurl }, {where: { id:id } });
   res.json(newurl);
 });
 
-router.put("/editname", validateToken, async (req, res) => {
-  const { newname, id } = req.body;
-  await Projects.update({ projectName:newname }, {where: { id:id } });
+/*const user= await User.findOne({ where: { firstName: 'John' } });
+user.lastName = "Jackson" 
+await user.save()*/
+
+router.put("/editname/:projectid", validateToken, async (req, res) => {
+  const projectid=req.params.projectid;
+  const newname= req.body;
+  await Projects.update({ projectName: newname }, { where: {
+    id: projectid
+  }});
   res.json(newname);
 });
 

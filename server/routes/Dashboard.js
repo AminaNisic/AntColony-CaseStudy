@@ -62,10 +62,18 @@ axios.post("/createPipeline", pipelineData)
   });*/
 
 
-router.post("/createPipeline", validateToken, async (req, res) => {
+/*router.post("/createPipeline", validateToken, async (req, res) => {
   const userid = req.user.id;
-  Pipelines.UserId = userid;
+  pipeline.UserId = userid;
   const pipeline = req.body;
+  await Pipelines.create(pipeline);
+  res.json(pipeline);
+});*/
+
+router.post("/createPipeline", validateToken, async (req, res) => {
+  const pipeline = req.body;
+  const userid = req.user.id;
+  pipeline.UserId = userid;
   await Pipelines.create(pipeline);
   res.json(pipeline);
 });
