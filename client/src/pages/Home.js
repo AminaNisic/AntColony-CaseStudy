@@ -3,6 +3,7 @@ import axios from 'axios';
 import '../App.css';
 import Options from './Options';
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 function Home() {
   const [isQueueOpen, setIsQueueOpen] = useState(false);
@@ -18,6 +19,12 @@ function Home() {
   const toggleStatus = () => {
     setIsStatusOpen(!isStatusOpen);
   } ;
+
+  const history = useHistory();
+
+  const handleAddPipeClick = () => {
+      history.push('/createpipe');
+    };
   
 
   const handleClick = (event) => {
@@ -94,7 +101,7 @@ function Home() {
           )}
         </div>
         <div className = "project-table-container"></div>
-         <table class="project-table">
+         <table className="project-table">
               <thead>
                 <tr>
                   <th>Project Name</th>
@@ -111,7 +118,7 @@ function Home() {
             </table>
       </div>
       <div className="main-content">
-        <button className="add-button" title="Add pipeline">+</button>
+        <button className="add-button" onClick={handleAddPipeClick} title="Add pipeline">+</button>
         <table className="pipeline-table">
           <thead>
             <tr>
