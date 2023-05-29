@@ -23,12 +23,13 @@ function Login() {
 
   return (
     <div className="login-container">
-      <h1>Please login</h1>
+      <h2> Login </h2>
       <form className="login-form">
         <label>Email: </label>
         <input
           type="text"
           id="email-input"
+          placeholder = "youremail@gmail.com"
           value={email}
           onChange={(event) => {
             setEmail(event.target.value);
@@ -38,16 +39,17 @@ function Login() {
         <input
           type="password"
           id="password-input"
+          placeholder = "********"
           value={password}
           onChange={(event) => {
             setPassword(event.target.value);
           }}
         />
-        <button type="button" onClick={login}>
+        <button type="button" className="login-button" onClick={login}>
           LOGIN
         </button>
       </form>
-      <p>Don't have an account? <a href="/register">Register now</a></p>
+      <p>Don't have an account? <a href="/register" className="register-link">Register now</a></p>
     </div>
   );
 }
