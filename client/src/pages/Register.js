@@ -25,20 +25,20 @@ function Register() {
 
   return (
     <div className="register-container">
-      <h1>Please register</h1>
+      <h2> Register </h2> 
       <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
         <Form className="register-form">
-          <label htmlFor="username">Username</label>
-          <Field id="username" name="username" />
+          <label htmlFor="username">Username:</label>
+          <Field id="username" name="username" placeholder="yourusername" />
           <ErrorMessage name="username" component="span" />
-          <label htmlFor="email">Email</label>
-          <Field id="email" name="email" />
+          <label htmlFor="email">Email:</label>
+          <Field id="email" name="email" placeholder="youremail@gmail.com" />
           <ErrorMessage name="email" component="span" />
-          <label htmlFor="password">Password</label>
-          <Field type="password" id="password" name="password" />
+          <label htmlFor="password">Password:</label>
+          <Field type="password" id="password" name="password" placeholder="********" />
           <ErrorMessage name="password" component="span" />
-          <button type="submit">REGISTER</button>
-          <p>Already have an account? <a href="/login">Login</a></p>
+          <button type="submit" className="register-button">REGISTER</button>
+          <p>Already have an account? <a href="/login" className="login-link">Login</a></p>
         </Form>
       </Formik>
     </div>
