@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../App.css';
+import { useHistory } from 'react-router-dom';
 
 const ProjectsList = () => {
   const projects = [
@@ -35,6 +36,12 @@ const ProjectsList = () => {
     setSelectedProjectId(null);
   };
 
+  const history = useHistory();
+
+  const handleAddProjectClick = () => {
+      history.push('/createproject');
+    };
+
   return (
     <div>
       <table className="projects-list-table">
@@ -64,7 +71,7 @@ const ProjectsList = () => {
       </table>
 
       <div style={{ textAlign: 'right', margin: '30px' }}>
-        <button type="add-project">Add Project</button>
+        <button type="add-project" onClick={handleAddProjectClick}> Add Project</button>
       </div>
  
 
