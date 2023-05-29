@@ -19,6 +19,19 @@ function Testcrud() {
     })
   }, []);
 
+  /*const delet = () => {
+    axios.delete(`http://localhost:3001/projects/${value.id}`, {
+      headers: {
+          accessToken: localStorage.getItem("accessToken"),
+      }
+      }).then((response) => {
+      if (response.data.error) { 
+        alert(response.data.error);
+      } else { 
+        alert("deleted :(");
+      }
+    });
+  };*/
 
   return (
     <div className="projectcontainer">
@@ -31,6 +44,21 @@ function Testcrud() {
         <div className='title'> {value.updatedAt} </div>
         <h1>Project id: {value.id} </h1>
         .
+        <button type="button" className="login-button" onClick={() => {
+          axios.delete(`http://localhost:3001/projects/${value.id}`, {
+            headers: {
+                accessToken: localStorage.getItem("accessToken"),
+            }
+            }).then((response) => {
+            if (response.data.error) { 
+              alert(response.data.error);
+            } else { 
+              alert("deleted :(");
+            }
+          });
+        }}>
+          DELETE NASTY
+        </button>
         </div>
       })}
     </div>
