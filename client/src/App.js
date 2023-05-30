@@ -39,6 +39,7 @@ function App() {
       <AuthContext.Provider value={{ authState, setAuthState }}>
         <Navbar />
         <Switch>
+          <Route path="/" exact component={LandingPage}/>
           <Route path="/createpipe" exact component={CreatePipe}/>
           <Route path="/createproject" exact component={CreateProject}/>
           <Route path="/features" exact component={Features}/>
@@ -53,7 +54,6 @@ function App() {
           </>
             )}
   
-          <Route component={LandingPage} />
         </Switch>
         </AuthContext.Provider>
       </BrowserRouter>
