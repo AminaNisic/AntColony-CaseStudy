@@ -11,6 +11,8 @@ function Home() {
   const [showOptions, setShowOptions] = useState(false);
   const [optionsPosition, setOptionsPosition] = useState({ x: 0, y: 0 });
   const [selectedPipe, setSelectedPipe] = useState('');
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupMessage, setPopupMessage] = useState('');
 
   const toggleQueue = () => {
     setIsQueueOpen(!isQueueOpen);
@@ -55,9 +57,21 @@ function Home() {
   };
 
   const handleRun = () => {
-    console.log(`Run ${selectedPipe}`);
+    const isSuccess = Math.random() < 0.6; // Generate a random number between 0 and 1, and check if it's less than 0.6 (60% chance)
+    
+    if (isSuccess) {
+      setPopupMessage('Success!');
+    } else {
+      setPopupMessage('Failure!');
+    }
+  
+    setShowPopup(true);
+    setTimeout(() => {
+      setShowPopup(false);
+    }, 2000); // Hide the popup after 2 seconds
     setShowOptions(false);
   };
+
 
   useEffect(() => {
     document.addEventListener('click', handleClick);
@@ -165,6 +179,7 @@ function Home() {
             onRun={handleRun}
           />
         )}
+        {showPopup && <div className="popup">{popupMessage}</div>}
       </div>
     </div>
   );
