@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 const Features = () => {
 
@@ -29,7 +30,7 @@ const Features = () => {
                 <p className="features-text">
                     All features a Jenkins user would need are also found on our website.
                     <br />
-                    Sign up now!
+                    <Link to= "/register" >Sign up now!</Link>
                 </p>
             </div>
          <div className="features-bottom">
