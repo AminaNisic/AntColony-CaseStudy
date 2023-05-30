@@ -57,7 +57,7 @@ function Home() {
   };
 
   const handleRun = () => {
-    const isSuccess = Math.random() < 0.6; // Generate a random number between 0 and 1, and check if it's less than 0.6 (60% chance)
+    const isSuccess = Math.random() < 0.6; 
     
     if (isSuccess) {
       setPopupMessage('Success!');
@@ -68,7 +68,7 @@ function Home() {
     setShowPopup(true);
     setTimeout(() => {
       setShowPopup(false);
-    }, 2000); // Hide the popup after 2 seconds
+    }, 2000); 
     setShowOptions(false);
   };
 
