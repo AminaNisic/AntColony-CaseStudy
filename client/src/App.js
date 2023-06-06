@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import testcrud from './pages/testcrud';
+import testpage from './pages/testpage';
 import ProjectsList from './pages/ProjectsList';
 import Navbar from './pages/Navbar';
 import LandingPage from './pages/LandingPage';
@@ -15,6 +16,7 @@ import CreateProject from './pages/CreateProject';
 import { AuthContext } from './helpers/AuthContext';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Testpage from './pages/testpage';
 
 function App() {
   const [authState, setAuthState] = useState(false);
@@ -46,6 +48,7 @@ function App() {
           <Route path="/about" exact component={About} />
           <Route path="/home" exact component={Home} />
           <Route path="/testcrud" exact component={testcrud} />
+          <Route path="/testpage/:id" exact component={testpage} />
           <Route path="/projectslist" exact component={ProjectsList} />   
           {!authState && (
           <>

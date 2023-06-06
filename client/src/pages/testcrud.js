@@ -5,7 +5,18 @@ import axios from 'axios';
 import '../App.css';
 import { useHistory } from 'react-router-dom';
 
+
 function Testcrud() {
+
+  let history = useHistory();
+
+  const initialValuesPN = {
+    newName: '',
+  };
+
+  const validationSchemaPN = Yup.object().shape({
+    newname: Yup.string().required(),
+  });
 
   const [listOfProjects, setListOfProjects] = useState([]);
 
@@ -34,22 +45,26 @@ function Testcrud() {
   };*/
 
   return (
-    <div className="projectcontainer">
+    <div className="projectcontainer" >
       {listOfProjects.map((value,key) => {
-        return <div className='projectcard'> 
-        <div className='title' onClick={() => {
+        return <div className='projectcard' onClick = {() => {
+          history.push(`/testpage/${value.id}`)
+        }}> 
+        <div className='title' /*onClick={() => {
           //da li je ovdje auth state potreban???
           let newname = prompt("enter new project name");
           axios.put(
             `http://localhost:3001/projects/editname/${value.id}`, 
-            {
-            newname:newname,
+            { 
+            newname
         }, 
         {
           headers: {accessToken: localStorage.getItem("accessToken")},
       });
           }
-        }> {value.projectName} </div>
+        }*/> {value.projectName} </div>
+        
+
         <div className='title'> {value.repoURL} </div>
         <div className='title'> {value.status} </div>
         <div className='title'> {value.createdAt} </div>

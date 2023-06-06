@@ -20,6 +20,7 @@ router.get("/", async (req, res) => {
 
 //
 //findOne({ where: { title: 'My Title' } })
+//myprojects
 router.get("/myProjects", validateToken, async (req, res) => {
   const id=req.user.id;
   const Project = await Projects.findAll({ where: { UserId: id }});
@@ -36,8 +37,7 @@ router.get("/myProjects/:projectid", validateToken, async (req, res) => {
 
 //edits
 router.put("/editrepourl", validateToken, async (req, res) => {
-  const id=req.params.id
-  const newurl= req.body;
+  const { newurl, id } = req.body;
   await Projects.update({ repoURL:newurl }, {where: { id:id } });
   res.json(newurl);
 });
@@ -47,11 +47,8 @@ user.lastName = "Jackson"
 await user.save()*/
 
 router.put("/editname/:projectid", validateToken, async (req, res) => {
-  const projectid=req.params.projectid;
-  const newname= req.body;
-  await Projects.update({ projectName: newname }, { where: {
-    id: projectid
-  }});
+  const { newname, id } = req.body;
+  await Projects.update({ projectName: newname }, { where: { id: id } });
   res.json(newname);
 });
 
