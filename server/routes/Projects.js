@@ -46,7 +46,7 @@ router.put("/editrepourl", validateToken, async (req, res) => {
 user.lastName = "Jackson" 
 await user.save()*/
 
-router.put("/editname/:projectid", validateToken, async (req, res) => {
+router.put("/editname", validateToken, async (req, res) => {
   const { newname, id } = req.body;
   await Projects.update({ projectName: newname }, { where: { id: id } });
   res.json(newname);
