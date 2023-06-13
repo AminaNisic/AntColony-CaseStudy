@@ -10,14 +10,7 @@ function Testcrud() {
 
   let history = useHistory();
 
-  const initialValuesPN = {
-    newName: '',
-  };
-
-  const validationSchemaPN = Yup.object().shape({
-    newname: Yup.string().required(),
-  });
-
+  
   const [listOfProjects, setListOfProjects] = useState([]);
 
   useEffect(() => {
@@ -50,19 +43,7 @@ function Testcrud() {
         return <div className='projectcard' onClick = {() => {
           history.push(`/testpage/${value.id}`)
         }}> 
-        <div className='title' /*onClick={() => {
-          //da li je ovdje auth state potreban???
-          let newname = prompt("enter new project name");
-          axios.put(
-            `http://localhost:3001/projects/editname/${value.id}`, 
-            { 
-            newname
-        }, 
-        {
-          headers: {accessToken: localStorage.getItem("accessToken")},
-      });
-          }
-        }*/> {value.projectName} </div>
+        <div className='title'> {value.projectName} </div>
         
 
         <div className='title'> {value.repoURL} </div>

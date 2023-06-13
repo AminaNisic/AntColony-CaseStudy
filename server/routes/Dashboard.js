@@ -35,7 +35,7 @@ router.get("/myPipelines/:pipelineid",validateToken, async (req, res) => {
 router.get("/:projectid", validateToken, async (req, res) => {
   const id = req.user.id
   const projectid = req.params.projectid
-  const Pipeline = await Pipelines.findAll({ where: { UserId: id, ProjectId: projectsid } });
+  const Pipeline = await Pipelines.findAll({ where: { UserId: id, ProjectId: projectid } });
   res.json(Pipeline);
 })
 
