@@ -20,6 +20,49 @@ function PipePage() {
     })
   }, []);
 
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupMessage, setPopupMessage] = useState('');
+
+
+
+const handleRun = () => {
+    const isSuccess = Math.random() < 0.6;
+
+    if (isSuccess) {
+      setPopupMessage('Success!');
+      let successstatus = "Success";
+      axios.put("http://localhost:3001/dashboard/runpipeline", { 
+          successstatus: successstatus, 
+          id: pipelineid,
+        }, 
+        {
+          headers: {
+              accessToken: localStorage.getItem("accessToken"),
+          }
+      });
+
+      setPipelineObject({...pipelineObject, stateOfPipeline: successstatus});
+    } else {
+      setPopupMessage('Failure!');
+      let successstatus = "Failure";
+      axios.put("http://localhost:3001/dashboard/runpipeline", { 
+          successstatus: successstatus, 
+          id: pipelineid,
+        }, 
+        {
+          headers: {
+              accessToken: localStorage.getItem("accessToken"),
+          }
+      });
+
+      setPipelineObject({...pipelineObject, stateOfPipeline: successstatus});
+    }
+
+    setShowPopup(true);
+    setTimeout(() => {
+      setShowPopup(false);
+    }, 2000);
+  };
     
 
     const editPipeline = (option) => {
@@ -72,7 +115,9 @@ function PipePage() {
     <div> State of pipeline: { pipelineObject.stateOfPipeline }</div>
     <div>{ pipelineObject.createdAt }</div>
     <div>{ pipelineObject.updatedAt }</div>
-
+    <button onClick = {() => {
+      handleRun();
+    }}> Run pipeline </button>
     
   </div>)
    
