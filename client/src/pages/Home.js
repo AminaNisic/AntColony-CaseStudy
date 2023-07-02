@@ -4,8 +4,6 @@ import '../App.css';
 import axios from 'axios';
 
 function Home() {
-  const [showPopup, setShowPopup] = useState(false);
-  const [popupMessage, setPopupMessage] = useState('');
   const [listOfPipelines, setListOfPipelines] = useState([]);
 
   useEffect(() => {
@@ -32,28 +30,12 @@ function Home() {
     history.push('/about');
   };
 
-  const handleMyProjectsClick = () => {
-    history.push('/projectslist');
-  };
-
-  const handleRun = () => {
-    const isSuccess = Math.random() < 0.6;
-
-    if (isSuccess) {
-      setPopupMessage('Success!');
-    } else {
-      setPopupMessage('Failure!');
-    }
-
-    setShowPopup(true);
-    setTimeout(() => {
-      setShowPopup(false);
-    }, 2000);
+  const handletestCrudClick = () => {
+    history.push('/testcrud');
   };
 
   return (
     <div className="home-container">
-      {showPopup && <div className="popup">{popupMessage}</div>}
       <div className="home-sidebar">
         <div className="home-frame">
           <h2 className="home-heading">Projects</h2>
@@ -70,33 +52,21 @@ function Home() {
           </button>
         </div>
       </div>
-
-
       <div className="home-pipelines">
-        <div className="home-frame">
+        <div className="home-pipe-frame">
           <h2 className="home-heading">Pipelines</h2>
           <ul className="pipeline-list">
-   {listOfPipelines.map ((value, key) => {
-    return (<li className='pipeline-item'> {value.pipelineName} </li>)
-      
-   
-   })}
+            {listOfPipelines.map ((value, key) => {
+            return (<li className='pipeline-item'> {value.pipelineName} </li>)
+            })}
           </ul>
         </div>
       </div>
-
-
-
       <div className="home-footer">
-        <button className="home-button" onClick={handleMyProjectsClick}>MY PROJECTS</button>
+        <button className="home-button" onClick={handletestCrudClick}>MY PROJECTS</button>
         <button className="home-button">MY PIPELINES</button>
-        <button className="home-button" onClick={handleAboutClick}>
-          ABOUT PIPELINER
-        </button>
+        <button className="home-button" onClick={handleAboutClick}>ABOUT PIPELINER</button>
       </div>
-      <button className="run-button" onClick={handleRun}>
-        RUN
-      </button>
     </div>
   );
 }
