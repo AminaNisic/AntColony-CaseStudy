@@ -17,6 +17,8 @@ import { AuthContext } from './helpers/AuthContext';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Testpage from './pages/testpage';
+import PipePage from './pages/PipePage';
+import Pipelines from './pages/Pipelines';
 
 function App() {
   const [authState, setAuthState] = useState(false);
@@ -48,6 +50,8 @@ function App() {
           <Route path="/about" exact component={About} />
           <Route path="/home" exact component={Home} />
           <Route path="/testcrud" exact component={testcrud} />
+          <Route path="/pipepage/:pipelineid" exact component={PipePage} />
+          <Route path="/pipelines" exact component={Pipelines} />
           <Route path="/testpage/:id" exact component={testpage} />
           <Route path="/projectslist" exact component={ProjectsList} />   
           {!authState && (
