@@ -32,6 +32,11 @@ function Navbar() {
     history.push('/testcrud.js');
   }*/
 
+  const logout = () => {
+    localStorage.removeItem("accessToken");
+    setAuthState(false);
+  };
+
   return (
     <nav>
       <AuthContext.Provider value={{ authState, setAuthState }}>
@@ -47,7 +52,7 @@ function Navbar() {
             </li>
             <li>
               {authState ? (
-                <button className= "nav-logout-button">LOGOUT</button>
+                <button className= "nav-logout-button" onClick={logout}>LOGOUT</button>
               ) : (
                 <button className="nav-login-button" onClick={handleLoginClick}>LOGIN</button>
               )}

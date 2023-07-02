@@ -1,10 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import '../App.css';
+import axios from 'axios';
 
 function Home() {
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState('');
+  const [listOfPipelines, setListOfPipelines] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:3001/dashboard/myPipelines", {
+      headers: {
+          accessToken: localStorage.getItem("accessToken"),
+      }
+  }).then((response) =>{
+      setListOfPipelines(response.data);
+    })
+  }, []);
 
   const history = useHistory();
 
@@ -18,6 +30,10 @@ function Home() {
 
   const handleAboutClick = () => {
     history.push('/about');
+  };
+
+  const handleMyProjectsClick = () => {
+    history.push('/projectslist');
   };
 
   const handleRun = () => {
@@ -54,17 +70,25 @@ function Home() {
           </button>
         </div>
       </div>
+
+
       <div className="home-pipelines">
         <div className="home-frame">
           <h2 className="home-heading">Pipelines</h2>
           <ul className="pipeline-list">
-            <li className="pipeline-item">Pipeline 1</li>
-            <li className="pipeline-item">Pipeline 2</li>
+   {listOfPipelines.map ((value, key) => {
+    return (<li className='pipeline-item'> {value.pipelineName} </li>)
+      
+   
+   })}
           </ul>
         </div>
       </div>
+
+
+
       <div className="home-footer">
-        <button className="home-button">MY PROJECTS</button>
+        <button className="home-button" onClick={handleMyProjectsClick}>MY PROJECTS</button>
         <button className="home-button">MY PIPELINES</button>
         <button className="home-button" onClick={handleAboutClick}>
           ABOUT PIPELINER
