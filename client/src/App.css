@@ -2,7 +2,6 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
 }
 
 .App {
@@ -319,20 +318,16 @@ input {
   color: #a703c0;
 }
 
-.home-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding: 20px;
-}
-
 .home-sidebar {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   max-width: 300px;
+  margin-right: 1400px;
   margin-top: 80px;
+  margin-bottom: 20px;
+  justify-content: space-between;
+  gap: 40px;
 }
 
 .home-frame {
@@ -345,7 +340,7 @@ input {
 
 .home-heading {
   color: #a703c0;
-  font-size: 1.5rem;
+  font-size: 1.5rem;  
   margin-bottom: 10px;
 }
 
@@ -372,17 +367,21 @@ input {
   color: white;
 }
 
-.home-content {
-  flex-grow: 1;
-  display: flex;
-  align-items: flex-start;
+.home-pipelines {
+  margin-top: -548px;
+  margin-bottom: 20px;
+  margin-left: 800px;
 }
 
-.home-footer {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  margin-top: 20px;
+.home-pipe-frame {
+  padding: 20px;
+  border: 1px solid #7c018f;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 500px;
+  margin-top: 80px;
+  margin-bottom: 20px;
+
 }
 
 .pipeline-list {
@@ -393,16 +392,113 @@ input {
 
 .pipeline-item {
   margin-bottom: 10px;
+  color: #621397;
+  font-size: 1rem;
 }
 
-.popup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgb(154, 132, 190);
+.home-footer {
+  gap: 60px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  margin-top: 550px;
+  margin-left: 500px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.projectcontainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:center;
+}
+
+.projectcard {
+  padding: 20px;
+  border: 1px solid #7c018f;
+  border-radius: 10px;
+  margin-top: 50px;
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+  width: 1000px;
+}
+
+.projectcard:hover {
+  background-color: rgba(235, 139, 187, 0.5);
+}
+
+.project-name {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #a703c0;
+  margin-bottom: 10px;
+}
+
+.projectcard .title {
+  margin-bottom: 7px;
+  color: #7c018f;
+  font-size: 1.1rem;
+}
+
+.projectcard .project-id {
+  font-weight: bold;
+  color: #7c018f;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  margin-top: 7px;
+}
+
+.projectcard .project-id span {
+  color: black;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.projectcard .title span {
+  color: black;
+  text-decoration: underline;
+}
+
+.delete-project-button {
+  border: none;
+  background-color: #7c018f;
+  padding: 20px;
+  border-radius: 10px;
+  cursor: pointer;
   color: white;
-  padding: 10px;
-  border-radius: 5px;
-  z-index: 999;
+  transition: 0.5s ease-in-out;
+}
+
+.delete-project-button:hover {
+  background-color: rgb(135, 88, 146);
+  color: #4a2250;
+}
+
+.project-edit {
+  padding: 20px;
+  border: 1px solid #7c018f;
+  border-radius: 10px;
+  width: 1000px;
+  margin-top: 50px;
+}
+
+.project-frame {
+  padding: 20px;
+  border: 1px solid #7c018f;
+  border-radius: 10px;
+  margin-top: 50px;
+}
+
+.pipelinecontainer {
+  padding: 20px;
+  border: 1px solid #7c018f;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 500px;
+  margin-top: 80px;
+  margin-bottom: 20px;
+}
+.pipelinecard {
+  margin-bottom: 10px;
+  color: #621397;
+  font-size: 1rem;
 }
