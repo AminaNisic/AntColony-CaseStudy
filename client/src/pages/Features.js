@@ -18,27 +18,25 @@ const Features = () => {
         }
     ];
     
-    return (
-        <div className="features-wrapper">
-            <div className="features-top">
-                <p className="features-subheading">
-                    So what does Pipeliner do?
-                </p>
-                <h1 className="features-subheading2">
-                    Everything that Jenkins does!
-                </h1>
-                <p className="features-text">
-                    All features a Jenkins user would need are also found on our website.
-                    <br />
-                    <Link to= "/register" >Sign up now!</Link>
-                </p>
-            </div>
-         <div className="features-bottom">
+return (
+    <div className="features-container">
+        <div className="features-top">
+            <p className="features-heading1">
+                So what does Pipeliner do?
+            </p>
+            <h1 className="features-heading2">
+                Everything that Jenkins does!
+            </h1>
+            <p className="features-paragraph">
+                All features a Jenkins user would need are also found on our website.
+                <br />
+                <Link to= "/register" >Sign up now!</Link>
+            </p>
+        </div>
+        <div className="features-bottom">
             {infoData.map((data) => (
                 <div className="features-info">
-                    <div className="info-boxes">
-                        <img src={data.image} alt =""/>
-                    </div>
+                    <img src={data.image} alt =""/>
                     <h2>{data.title}</h2>
                     <p>{data.text}</p>
                 </div>
