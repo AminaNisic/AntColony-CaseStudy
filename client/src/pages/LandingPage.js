@@ -14,18 +14,16 @@ const LandingPage = () => {
   return (
     <div className="landing-page-container">
         <div className="landing-page-banner">
-            <div className="stressed-image">
-                <img src ={Stressed} alt=""/>
-            </div> 
-            <div className="landing-page-text-section">
-                <h1 className= "primary-heading" >
+            <img src ={Stressed} alt=""/>
+            <div className="landing-page-text">
+                <h1 className= "landing-page-heading" >
                     Sick of Jenkins?
                 </h1>
-                <p className = "primary-text">
+                <p className = "landing-page-paragraph">
                     Jenkins has a very ugly UI.
-                    <br />
+                    <br/>
                     It is not even pretty.
-                    <br />
+                    <br/>
                     We're here to change that!
                     <br/>
                     Manage pipes with aesthetics!
@@ -34,11 +32,8 @@ const LandingPage = () => {
                     HOW?
                 </button>
             </div>
-
-
         </div>
     </div>
-    
   )
 }
 
