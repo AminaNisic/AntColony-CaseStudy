@@ -1,186 +1,78 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import '../App.css';
-import Options from './Options';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import '../App.css';
 
 function Home() {
-  const [isQueueOpen, setIsQueueOpen] = useState(false);
-  const [isStatusOpen, setIsStatusOpen] = useState(false);
-  const [showOptions, setShowOptions] = useState(false);
-  const [optionsPosition, setOptionsPosition] = useState({ x: 0, y: 0 });
-  const [selectedPipe, setSelectedPipe] = useState('');
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState('');
 
-  const toggleQueue = () => {
-    setIsQueueOpen(!isQueueOpen);
-  };
-
-  const toggleStatus = () => {
-    setIsStatusOpen(!isStatusOpen);
-  } ;
-
   const history = useHistory();
 
-  const handleAddPipeClick = () => {
-      history.push('/createpipe');
-    };
-  
-
-  const handleClick = (event) => {
-    if (
-      !event.target.classList.contains('options-menu') &&
-      !event.target.classList.contains('pipe-name')
-    ) {
-      setShowOptions(false);
-    }
-  };
-  
-  const showContextMenu = (event, pipeName) => {
-    event.preventDefault();
-    const { clientX, clientY } = event;
-    setSelectedPipe(pipeName);
-    setOptionsPosition({ x: clientX, y: clientY });
-    setShowOptions(true);
-  };
-  
-  const handleEdit = () => {
-    console.log(`Edit ${selectedPipe}`);
-    setShowOptions(false);
+  const handleCreatePipeClick = () => {
+    history.push('/createpipe');
   };
 
-  const handleDelete = () => {
-    console.log(`Delete ${selectedPipe}`);
-    setShowOptions(false);
+  const handleCreateProjectClick = () => {
+    history.push('/createproject');
+  };
+
+  const handleAboutClick = () => {
+    history.push('/about');
   };
 
   const handleRun = () => {
-    const isSuccess = Math.random() < 0.6; 
-    
+    const isSuccess = Math.random() < 0.6;
+
     if (isSuccess) {
       setPopupMessage('Success!');
     } else {
       setPopupMessage('Failure!');
     }
-  
+
     setShowPopup(true);
     setTimeout(() => {
       setShowPopup(false);
-    }, 2000); 
-    setShowOptions(false);
+    }, 2000);
   };
-
-
-  useEffect(() => {
-    document.addEventListener('click', handleClick);
-
-    return () => {
-    document.removeEventListener('click', handleClick);
-  };
-}, []);
 
   return (
     <div className="home-container">
-      <div className="sidebar">
-        <button className="sidebar-btn">New Item</button>
-        <button className="sidebar-btn">Build History</button>
-        <button className="sidebar-btn">Manage</button>
-        <button className="sidebar-btn">Me</button>
-        <div className="queue-container">
-          <div className="queue-header" onClick={toggleQueue}>
-            <div className={`queue-header-top ${isQueueOpen ? 'grey' : ''}`}>Build Queue</div>
-            <div className="queue-header-bottom">
-              {isQueueOpen ? <i className="arrow up"></i> : <i className="arrow down"></i>}
-            </div>
-          </div>
-          {isQueueOpen && (
-            <div className="queue-content">
-              <div className="queue-content-inner">No builds in queue.</div>
-            </div>
-          )}
+      {showPopup && <div className="popup">{popupMessage}</div>}
+      <div className="home-sidebar">
+        <div className="home-frame">
+          <h2 className="home-heading">Projects</h2>
+          <p className="home-paragraph">Want to try making a new project? We're here to help!</p>
+          <button className="home-button" onClick={handleCreateProjectClick}>
+            CREATE PROJECT
+          </button>
         </div>
-        <div className="status-container">
-          <div className="status-header" onClick={toggleStatus}>
-            <div className={`status-header-top ${isStatusOpen ? 'grey' : ''}`}>Build Status</div>
-            <div className="status-header-bottom">
-              {isStatusOpen ? <i className="arrow up"></i> : <i className="arrow down"></i>}
-            </div>
-          </div>
-          {isStatusOpen && (
-            <div className="status-content">
-              <div className="status-content-inner">No builds running.</div>
-            </div>
-          )}
+        <div className="home-frame">
+          <h2 className="home-heading">Pipes</h2>
+          <p className="home-paragraph">Need a pipe? Create one and assign it to an existing project!</p>
+          <button className="home-button" onClick={handleCreatePipeClick}>
+            CREATE PIPE
+          </button>
         </div>
-        <div className = "project-table-container"></div>
-         <table className="project-table">
-              <thead>
-                <tr>
-                  <th>Project Name</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td> <Link to = "/projectslist">Project 1</Link></td>
-                </tr>
-                <tr>
-                <td> <Link to = "/projectslist">Project 2</Link></td>
-                </tr>
-              </tbody>
-            </table>
       </div>
-      <div className="main-content">
-        <button className="add-button" onClick={handleAddPipeClick} title="Add pipeline">+</button>
-        <table className="pipeline-table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Language</th>
-              <th>Action</th>
-              <th>State</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td className="pipe-name" onClick={(event) => event.button === 0 && showContextMenu(event, 'Pipe 1')}>Pipe 1</td>
-              <td>React</td>
-              <td>Action</td>
-              <td>Running</td>
-            </tr>
-            <tr>
-              <td className="pipe-name" onClick={(event) => event.button === 0 && showContextMenu(event, 'Pipe 2')}>Pipe 2</td>
-              <td>C</td>
-              <td>Action</td>
-              <td>Not running</td>
-            </tr>
-            <tr>
-              <td className="pipe-name" onClick={(event) => event.button === 0 && showContextMenu(event, 'Pipe 3')}>Pipe 3</td>
-              <td>Python</td>
-              <td>Action</td>
-              <td>Not running</td>
-            </tr>
-            <tr>
-              <td className="pipe-name" onClick={(event) => event.button === 0 && showContextMenu(event, 'Pipe 4')}>Pipe 4</td>
-              <td>Python</td>
-              <td>Action</td>
-              <td>Not running</td>
-            </tr>
-          </tbody>
-        </table>
-        {showOptions && (
-          <Options
-            x={optionsPosition.x}
-            y={optionsPosition.y}
-            onClose={() => setShowOptions(false)}
-            onEdit={handleEdit}
-            onDelete={handleDelete}
-            onRun={handleRun}
-          />
-        )}
-        {showPopup && <div className="popup">{popupMessage}</div>}
+      <div className="home-pipelines">
+        <div className="home-frame">
+          <h2 className="home-heading">Pipelines</h2>
+          <ul className="pipeline-list">
+            <li className="pipeline-item">Pipeline 1</li>
+            <li className="pipeline-item">Pipeline 2</li>
+          </ul>
+        </div>
       </div>
+      <div className="home-footer">
+        <button className="home-button">MY PROJECTS</button>
+        <button className="home-button">MY PIPELINES</button>
+        <button className="home-button" onClick={handleAboutClick}>
+          ABOUT PIPELINER
+        </button>
+      </div>
+      <button className="run-button" onClick={handleRun}>
+        RUN
+      </button>
     </div>
   );
 }
