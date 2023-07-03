@@ -2,6 +2,7 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 
 .App {
@@ -526,6 +527,27 @@ input {
   margin-top: 10px;
 }
 
+.close-button {
+  position: absolute;
+  background-color: #7c018f;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  margin-top: 700px;
+}
+
+.close-button:hover {
+  background-color: rgb(128, 105, 156);
+}
+
 .edit-project-name span {
   color: #7c018f;
   font-weight: bold;
@@ -613,4 +635,55 @@ input {
 .create-pipe-project-form{
   display: flex;
   flex-direction: column;
+}
+.pipeline-state {
+  color: #ca3113;
+  margin-left: 10px;
+}
+.pipe-frame {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border: 1px solid #7c018f;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  margin-top: 70px;
+  margin-right: 110px;
+  width: 500px;
+  height: 279px;
+}
+
+.pipe-project-thing {
+  margin-top: 222px;
+}
+
+.edit-project-pipe-thing {
+  margin-top: 67px;
+}
+
+.edit-project-pipe-thing span {
+  color: black;
+  text-decoration: underline;
+  font-size: 1.2rem;
+}
+
+.run-pipeline-button {
+  border: none;
+  background-color: rgb(154, 132, 190);
+  padding: 5px;
+  cursor: pointer;
+  color: white;
+  transition: 0.5s ease-in-out;
+  margin-top: 20px;
+}
+
+.run-pipeline-button:hover {
+  background-color: rgba(255,173,214,1);
+  color: black;
+}
+
+.pipeline-state {
+  color:#7c018f;
+  font-size: 1.2rem;
+  margin-right: 10px;
 }
