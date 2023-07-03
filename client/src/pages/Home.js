@@ -30,8 +30,12 @@ function Home() {
     history.push('/about');
   };
 
-  const handletestCrudClick = () => {
-    history.push('/testcrud');
+  const handleProjectsListClick = () => {
+    history.push('/projectslist');
+  };
+
+  const handlePipelinesClick = () => {
+    history.push('/pipelines');
   };
 
   return (
@@ -63,8 +67,8 @@ function Home() {
         </div>
       </div>
       <div className="home-footer">
-        <button className="home-button" onClick={handletestCrudClick}>MY PROJECTS</button>
-        <button className="home-button">MY PIPELINES</button>
+        <button className="home-button" onClick={handleProjectsListClick}>MY PROJECTS</button>
+        <button className="home-button" onClick={handlePipelinesClick}>MY PIPELINES</button>
         <button className="home-button" onClick={handleAboutClick}>ABOUT PIPELINER</button>
       </div>
     </div>
