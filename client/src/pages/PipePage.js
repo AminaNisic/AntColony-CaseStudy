@@ -3,8 +3,6 @@ import axios from 'axios';
 import '../App.css';
 import { useHistory, useParams } from 'react-router-dom';
 
-
-
 function PipePage() {
 
   let { pipelineid } = useParams();
@@ -22,8 +20,6 @@ function PipePage() {
 
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState('');
-
-
 
 const handleRun = () => {
     const isSuccess = Math.random() < 0.6;
@@ -63,8 +59,7 @@ const handleRun = () => {
       setShowPopup(false);
     }, 2000);
   };
-    
-
+  
     const editPipeline = (option) => {
       if (option === "pipelineName") {
         let newpipelineName = prompt("Enter new name for pipeline: ");
@@ -98,30 +93,66 @@ const handleRun = () => {
 
       }
     }
+    return (
+      <div className="pipe-frame">
+        <div className="edit-project-name">
+          <span>Pipeline Name:</span>
+          <h1
+            style={{ display: 'inline' }}
+            onClick={() => {
+              editPipeline('pipelineName');
+            }}
+          >
+            {pipelineObject.pipelineName}
+          </h1>
+          <button
+            className="edit-project-button"
+            onClick={() => {
+              editPipeline('pipelineName');
+            }}
+          >
+            EDIT
+          </button>
+        </div>
+        <div className="edit-project-thing">
+        <span>Actions:</span>
+        <span
+          onClick={() => {
+            editPipeline('actions');
+          }}
+        >
+          {pipelineObject.actions}
+        </span>
+        <button
+          className="edit-project-button"
+          onClick={() => {
+            editPipeline('actions');
+          }}
+        >
+          EDIT
+        </button>
+      </div>
+      <div className="edit-project-thing">
+        <span>Language:</span>
+        <div>{pipelineObject.language}</div>
+      </div>
 
-   
-
-  return ( 
-  <div >
-    pipeline name:
-    <h1 onClick = {() => {
-      editPipeline("pipelineName");
-    }}>{ pipelineObject.pipelineName}</h1> <button onClick = {() => {
-      editPipeline("pipelineName");
-    }}> edit </button>
-    <div onClick = {() => {
-      editPipeline("actions");
-    }}>{ pipelineObject.actions } </div>
-    <div> State of pipeline: { pipelineObject.stateOfPipeline }</div>
-    <div>{ pipelineObject.createdAt }</div>
-    <div>{ pipelineObject.updatedAt }</div>
-    <button onClick = {() => {
-      handleRun();
-    }}> Run pipeline </button>
-    
-  </div>)
-   
-  
-
+      <div classname="pipe-project-thing">
+        <div className="edit-project-pipe-thing">
+      <span>State of Pipeline:</span>
+      <div className="pipeline-state">{pipelineObject.stateOfPipeline}</div>
+      </div>
+        <button
+          className="run-pipeline-button"
+          onClick={() => {
+            handleRun();
+          }}
+        >
+          Run Pipeline
+        </button>
+        </div>
+      </div>
+    );
   }
-export default PipePage;
+  
+  export default PipePage;
