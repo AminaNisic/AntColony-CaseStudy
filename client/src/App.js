@@ -4,8 +4,6 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
 import Register from './pages/Register';
 import Login from './pages/Login';
-import testcrud from './pages/testcrud';
-import testpage from './pages/testpage';
 import ProjectsList from './pages/ProjectsList';
 import Navbar from './pages/Navbar';
 import LandingPage from './pages/LandingPage';
@@ -16,7 +14,7 @@ import CreateProject from './pages/CreateProject';
 import { AuthContext } from './helpers/AuthContext';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import Testpage from './pages/testpage';
+import ProjectPage from './pages/ProjectPage';
 import PipePage from './pages/PipePage';
 import Pipelines from './pages/Pipelines';
 
@@ -49,11 +47,10 @@ function App() {
           <Route path="/features" exact component={Features}/>
           <Route path="/about" exact component={About} />
           <Route path="/home" exact component={Home} />
-          <Route path="/testcrud" exact component={testcrud} />
+          <Route path="/projectslist" exact component={ProjectsList} />
           <Route path="/pipepage/:pipelineid" exact component={PipePage} />
           <Route path="/pipelines" exact component={Pipelines} />
-          <Route path="/testpage/:id" exact component={testpage} />
-          <Route path="/projectslist" exact component={ProjectsList} />   
+          <Route path="/projectpage/:id" exact component={ProjectPage} /> 
           {!authState && (
           <>
           <Route path="/register" exact component={Register} />
