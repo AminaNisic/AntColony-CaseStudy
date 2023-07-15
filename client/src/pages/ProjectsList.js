@@ -25,7 +25,7 @@ function ProjectsList() {
       {listOfProjects.map((value, key) => {
         return (
           <div className='projectcard' onClick={() => {
-            history.push(`/testpage/${value.id}`)
+            history.push(`/projectpage/${value.id}`)
           }}>
             <div className='project-name'> {value.projectName} </div>
             <div className='title'>

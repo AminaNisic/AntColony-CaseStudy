@@ -59,9 +59,11 @@ function Home() {
       <div className="home-pipelines">
         <div className="home-pipe-frame">
           <h2 className="home-heading">Pipelines</h2>
-          <ul className="pipeline-list">
+          <ul className="pipeline-list" > 
             {listOfPipelines.map ((value, key) => {
-            return (<li className='pipeline-item'> {value.pipelineName} </li>)
+            return (<li className='pipeline-item'onClick={() => {
+              history.push(`/pipepage/${value.id}`)
+            }}> {value.pipelineName} </li>)
             })}
           </ul>
         </div>

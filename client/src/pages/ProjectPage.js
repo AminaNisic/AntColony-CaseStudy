@@ -6,6 +6,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
 function ProjectPage() {
+  let history = useHistory();
   let { id } = useParams();
   const [projectObject, setProjectObject] = useState({});
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -144,7 +145,10 @@ function ProjectPage() {
         {listOfPipelines.map((value, key) => {
           return (
             <div className="pipelines-list" key={key}>
-              <div className="pipelinecard">{value.pipelineName}</div>
+              <div className="pipelinecard"
+              onClick={() => {
+                history.push(`/pipepage/${value.id}`)
+              }}>{value.pipelineName}</div>
             </div>
           );
         })}
