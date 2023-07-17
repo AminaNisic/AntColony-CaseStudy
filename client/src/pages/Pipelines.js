@@ -18,6 +18,28 @@ function Pipelines() {
     })
   }, []);
 
+  const handleDeletePipeline = (pipelineId) => {
+    axios.delete(`http://localhost:3001/dashboard/${pipelineId}`, {
+      headers: {
+        accessToken: localStorage.getItem("accessToken"),
+      }
+    }).then((response) => {
+      if (response.data.error) {
+        alert(response.data.error);
+      } else {
+        alert("Deleted pipeline with ID: " + pipelineId);
+      }
+    });
+  };
+
+  const confirmDeletePipeline = (event, pipelineId) => {
+    event.stopPropagation(); 
+    const shouldDelete = window.confirm("Are you sure you want to delete this pipeline?");
+    if (shouldDelete) {
+      handleDeletePipeline(pipelineId);
+    }
+  };
+
   return (
     <div className="projectcontainer">
       {listOfProjects.map((value, key) => {
@@ -42,19 +64,7 @@ function Pipelines() {
             <button
               type="button"
               className="delete-project-button"
-              onClick={() => {
-                axios.delete(`http://localhost:3001/dashboard/${value.id}`, {
-                  headers: {
-                    accessToken: localStorage.getItem("accessToken"),
-                  }
-                }).then((response) => {
-                  if (response.data.error) {
-                    alert(response.data.error);
-                  } else {
-                    alert("deleted :(");
-                  }
-                });
-              }}>
+              onClick={(e) => confirmDeletePipeline(e, value.id)}>
               Delete Pipeline
             </button>
           </div>
