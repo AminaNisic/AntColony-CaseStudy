@@ -541,7 +541,7 @@ input {
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s ease;
-  margin-top: 700px;
+  margin-top: 740px;
 }
 
 .close-button:hover {
@@ -554,9 +554,19 @@ input {
   font-size: 1.6rem;
 }
 
-.edit-project-thing span {
+.edit-project-name {
+  color: rgb(156, 90, 146);
+  font-size: 0.78rem;
+}
+
+.edit-project-thinger {
   color: black;
   text-decoration: underline;
+  font-size: 1.2rem;
+}
+
+.edit-project-things {
+  color: rgb(156, 90, 146);
   font-size: 1.2rem;
 }
 
@@ -567,6 +577,9 @@ input {
   cursor: pointer;
   color: white;
   transition: 0.5s ease-in-out;
+  margin-left: 10px;
+  width: 55px;
+  border-radius: 5px;
 }
 
 .edit-project-button:hover {
@@ -686,4 +699,8 @@ input {
   color:#7c018f;
   font-size: 1.2rem;
   margin-right: 10px;
+}
+select[name="ProjectId"] {
+  margin-top: 10px; 
+  margin-bottom: 10px; 
 }
