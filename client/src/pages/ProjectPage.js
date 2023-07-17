@@ -10,6 +10,8 @@ function ProjectPage() {
   let { id } = useParams();
   const [projectObject, setProjectObject] = useState({});
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [options, setOptions] = useState([]);
+  const [selectedOption, setSelectedOption] = useState('');
 
   useEffect(() => {
     axios.get(`http://localhost:3001/projects/myProjects/${id}`, {
@@ -22,6 +24,10 @@ function ProjectPage() {
   }, []);
 
   const [listOfPipelines, setListOfPipelines] = useState([]);
+
+  const handleOptionChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
 
   useEffect(() => {
     axios.get(`http://localhost:3001/dashboard/${id}`, {
@@ -115,28 +121,29 @@ function ProjectPage() {
   return (
     <div className="project-edit">
       <div className="project-frame">
-        <div className="edit-project-name">
+      <div className="edit-project-name">
           <span>Project Name:</span>
-          <h1 style={{ display: 'inline' }} onClick={() => { editProject('projectName'); }}>{projectObject.projectName}</h1>
+          <h1 style={{ display: 'inline' }} onClick={() => { editProject('projectName'); }}>{projectObject.projectName}
+          </h1>
           <button className="edit-project-button" onClick={() => { editProject('projectName'); }}>EDIT</button>
         </div>
         <div className="edit-project-thing">
-          <span>repoURL:</span>
-          <span onClick={() => { editProject('repoURL'); }}>{projectObject.repoURL}</span>
+          <span className="edit-project-thinger">repoURL:</span>
+          <span className= "edit-project-things"onClick={() => { editProject('repoURL'); }}>{projectObject.repoURL}</span>
           <button className="edit-project-button" onClick={() => { editProject('repoURL'); }}>EDIT</button>
         </div>
         <div className="edit-project-thing">
-          <span>Status:</span>
-          <span onClick={() => { editProject('status'); }}>{projectObject.status}</span>
+          <span className="edit-project-thinger">Status:</span>
+          <span className= "edit-project-things" onClick={() => { editProject('status'); }}>{projectObject.status}</span>
           <button className="edit-project-button" onClick={() => { editProject('status'); }}>EDIT</button>
         </div>
         <div className="edit-project-thing">
-          <span>Created At:</span>
-          <span>{projectObject.createdAt}</span>
+          <span className="edit-project-thinger">Created At:</span>
+          <span className= "edit-project-things">{projectObject.createdAt}</span>
         </div>
         <div className="edit-project-thing">
-          <span>Updated At:</span>
-          <span>{projectObject.updatedAt}</span>
+          <span className="edit-project-thinger">Updated At:</span>
+          <span className= "edit-project-things">{projectObject.updatedAt}</span>
         </div>
       </div>
 
@@ -170,6 +177,14 @@ function ProjectPage() {
                     <Field id="language" name="language" placeholder="Language" />
                     <label>Actions:</label>
                     <Field id="actions" name="actions" placeholder="Actions" />
+                    <select name="ProjectId" onChange={handleOptionChange}>
+                    <option value="">Select a project</option>
+                    {options.map((option) => (
+                    <option key={option.id} value={option.id}>
+                      {option.projectName}
+                    </option>
+                    ))}
+                    </select>
                     <button type="submit" className="create-pipe-button">ADD PIPE</button>
                   </Form>
                 </Formik>
