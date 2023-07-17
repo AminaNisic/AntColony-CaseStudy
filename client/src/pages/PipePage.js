@@ -115,8 +115,8 @@ const handleRun = () => {
           </button>
         </div>
         <div className="edit-project-thing">
-        <span>Actions:</span>
-        <span
+        <span className="edit-project-thinger">Actions:</span>
+        <span className= "edit-project-things"
           onClick={() => {
             editPipeline('actions');
           }}
@@ -132,9 +132,10 @@ const handleRun = () => {
           EDIT
         </button>
       </div>
+
       <div className="edit-project-thing">
-        <span>Language:</span>
-        <div>{pipelineObject.language}</div>
+        <span className="edit-project-thinger">Language:</span>
+        <div className= "edit-project-things">{pipelineObject.language}</div>
       </div>
 
       <div classname="pipe-project-thing">
