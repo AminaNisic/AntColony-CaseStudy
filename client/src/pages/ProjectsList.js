@@ -30,6 +30,9 @@ function ProjectsList() {
         alert(response.data.error);
       } else {
         alert("Deleted project with ID: " + projectId);
+        setListOfProjects((prevProjects) =>
+          prevProjects.filter((project) => project.id !== projectId)
+        );
       }
     });
   };
