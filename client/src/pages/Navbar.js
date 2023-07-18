@@ -33,6 +33,7 @@ function Navbar() {
   }*/
 
   const logout = () => {
+    history.push('/');
     localStorage.removeItem("accessToken");
     setAuthState(false);
   };
