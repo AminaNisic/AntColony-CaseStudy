@@ -28,6 +28,9 @@ function Pipelines() {
         alert(response.data.error);
       } else {
         alert("Deleted pipeline with ID: " + pipelineId);
+        setListOfProjects((prevProjects) =>
+          prevProjects.filter((project) => project.id !== pipelineId)
+        );
       }
     });
   };
