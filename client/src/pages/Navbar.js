@@ -33,9 +33,11 @@ function Navbar() {
   }*/
 
   const logout = () => {
+    history.push('/');
     localStorage.removeItem("accessToken");
     setAuthState(false);
   };
+
 
   useEffect(() => {
     axios.get('http://localhost:3001/auth/authenticate', {
